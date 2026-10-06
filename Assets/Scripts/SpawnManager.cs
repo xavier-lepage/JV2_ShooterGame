@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
             activeSpawners.Add(spawner);
         }
         aliens = new GameObject[maxActiveAliens];
-        for (int i = 0; i < maxAliensSpawned; i++)
+        for (int i = 0; i < maxActiveAliens; i++)
         {
             aliens[i] = Instantiate(alien);
             aliens[i].SetActive(false);
@@ -65,6 +65,7 @@ public class SpawnManager : MonoBehaviour
                 
             AlienSpawn alienSpawn = alien.GetComponent<AlienSpawn>();
             alienSpawn.Spawn(spawner.transform.position);
+            currentAliensSpawned++;
             spawnTimer = spawnInterval;
             break;
         }
