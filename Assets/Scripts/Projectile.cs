@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float speed = 20.0f;
+    [SerializeField] private float speed;
+    [SerializeField] protected int damage;
+
     protected Rigidbody rb;
 
     protected virtual void Start()
@@ -22,6 +24,12 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Target"))
+        {
+            HealthManager target = collision.gameObject.GetComponent<HealthManager>();
+            if (target != null) target.Hurt(damage);
+        }
+
         gameObject.SetActive(false);
     }
 }
