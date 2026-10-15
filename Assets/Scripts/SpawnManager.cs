@@ -43,15 +43,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void OnSpawnerDeath()
+    public void OnSpawnerDeath(GameObject spawner)
     {
-        foreach (GameObject spawner in activeSpawners)
-        {
-            if (!spawner.activeSelf) continue;
-
-            activeSpawners.Remove(spawner);
-            break;
-        }
+        activeSpawners.Remove(spawner);
     }
 
     private void SpawnAlien()
