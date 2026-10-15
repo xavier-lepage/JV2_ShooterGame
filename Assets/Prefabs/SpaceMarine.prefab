@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 5911751891482930821}
   - component: {fileID: 1181922374750953926}
   - component: {fileID: 5119194545032341362}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1145,7 +1145,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8480429154257158358}
+  - component: {fileID: 5502690286714237559}
+  - component: {fileID: 5214240275185879247}
   - component: {fileID: -6145939938027288216}
+  - component: {fileID: 6161725114695953078}
   m_Layer: 0
   m_Name: SpaceMarine
   m_TagString: Untagged
@@ -1170,6 +1173,53 @@ Transform:
   - {fileID: 6173819684232511389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &5502690286714237559
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893033509269663184}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!143 &5214240275185879247
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893033509269663184}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 10
+  m_Radius: 2.4
+  m_SlopeLimit: 45
+  m_StepOffset: 1
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0
+  m_Center: {x: 0, y: 5.4, z: 0}
 --- !u!114 &-6145939938027288216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,6 +1232,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6a4e8cbd42011488212245e0efcd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovePlayer
+  moveSpeed: 20
+--- !u!114 &6161725114695953078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893033509269663184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fb025560f1c8443a0c79f13bebd448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthManager
+  maxHealth: 10
+  currentHealth: 0
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2105166920249793134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,7 +2340,7 @@ GameObject:
   - component: {fileID: 3761900233022687563}
   - component: {fileID: 1941920849242739519}
   - component: {fileID: 5912128029503200901}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2613,7 +2681,7 @@ GameObject:
   - component: {fileID: 8332250853035298224}
   - component: {fileID: 3075015707296045970}
   - component: {fileID: 266266005131090574}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2825,7 +2893,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8753387643969775865}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3104,7 +3172,7 @@ GameObject:
   - component: {fileID: 1198416467439553315}
   - component: {fileID: 2442690561737914130}
   - component: {fileID: 2387192732499078064}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3560,7 +3628,7 @@ GameObject:
   - component: {fileID: 7797286623309305876}
   - component: {fileID: 1216363545046045369}
   - component: {fileID: 6698872030306537004}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: cutter 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4275,7 +4343,7 @@ GameObject:
   - component: {fileID: 4094649703624239152}
   - component: {fileID: 8431317437823346244}
   - component: {fileID: 5045991035806836996}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4795,7 +4863,7 @@ GameObject:
   - component: {fileID: 5081783142184447924}
   - component: {fileID: 6944096720740855637}
   - component: {fileID: 7147348478905363727}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4918,7 +4986,7 @@ GameObject:
   - component: {fileID: 6464624310564112610}
   - component: {fileID: 8897866177285963350}
   - component: {fileID: 6549130882872814640}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
