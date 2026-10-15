@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CollectibleManager : MonoBehaviour
 {
-    [SerializeField] private int dropChance = 7;
+    [SerializeField] private float dropRarity = 15f;
     [SerializeField] private GameObject[] pickupPrefabs;
     private int arraySize = 10;
     private GameObject[,] pickups;
@@ -22,8 +22,7 @@ public class CollectibleManager : MonoBehaviour
 
     public void OnAlienDeath(GameObject alien)
     {
-        if (Random.Range(1, 101) > dropChance) return;
-        Debug.Log("Pickup");
+        if (Random.Range(0f, 1f) > (1f / dropRarity)) return;
 
         int row = Random.Range(0, pickups.GetLength(0));
         for (int i = 0; i < pickups.GetLength(1); i++)
