@@ -5,14 +5,13 @@ public class HealthManager : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int currentHealth;
-    [SerializeField] private UnityEvent onDeath;
 
     private void OnEnable()
     {
         currentHealth = maxHealth;
     }
 
-    public virtual void Hurt(int damage)
+    public virtual void TakeDamage(int damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
@@ -21,9 +20,8 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         gameObject.SetActive(false);
-        onDeath.Invoke();
     }
 }

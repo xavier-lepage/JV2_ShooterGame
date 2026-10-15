@@ -11,7 +11,7 @@ public class AlienCollision : MonoBehaviour
 
         if (!CheckHeadStomp(collision.GetContact(0).point))
         {
-            collision.gameObject.GetComponent<HealthManager>().Hurt(1);
+            collision.gameObject.GetComponent<HealthManager>().TakeDamage(1);
         }
         gameObject.SetActive(false);
     }
