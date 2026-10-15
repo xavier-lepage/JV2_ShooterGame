@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] spawners;
-    [SerializeField] private GameObject alien;
+    [SerializeField] private GameObject alienPrefab;
     private GameObject[] aliens;
 
     [SerializeField] private int maxActiveAliens = 20;
@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
         aliens = new GameObject[maxActiveAliens];
         for (int i = 0; i < maxActiveAliens; i++)
         {
-            aliens[i] = Instantiate(alien);
+            aliens[i] = Instantiate(alienPrefab);
             aliens[i].SetActive(false);
         }
     }

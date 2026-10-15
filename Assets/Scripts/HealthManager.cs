@@ -20,7 +20,7 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    protected virtual void Die()
+    public virtual void Die()
     {
         gameObject.SetActive(false);
     }

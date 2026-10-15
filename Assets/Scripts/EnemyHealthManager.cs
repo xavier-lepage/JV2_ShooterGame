@@ -5,7 +5,7 @@ public class EnemyHealthManager : HealthManager
 {
     [SerializeField] private UnityEvent<GameObject> onDeath;
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
         onDeath.Invoke(gameObject);

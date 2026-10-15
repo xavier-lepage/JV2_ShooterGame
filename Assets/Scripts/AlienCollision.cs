@@ -3,6 +3,12 @@ using UnityEngine;
 public class AlienCollision : MonoBehaviour
 {
     [SerializeField] private float coneAngle = 15f;
+    private HealthManager healthManager;
+
+    void Start()
+    {
+        healthManager = gameObject.GetComponent<HealthManager>();    
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -13,7 +19,7 @@ public class AlienCollision : MonoBehaviour
         {
             collision.gameObject.GetComponent<HealthManager>().TakeDamage(1);
         }
-        gameObject.SetActive(false);
+        healthManager.Die();
     }
 
     public bool CheckHeadStomp(Vector3 contactPoint)
