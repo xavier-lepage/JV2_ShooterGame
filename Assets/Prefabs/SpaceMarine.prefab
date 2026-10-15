@@ -1248,6 +1248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
   maxHealth: 10
   currentHealth: 0
+  immunePeriod: 0.5
   onDeath:
     m_PersistentCalls:
       m_Calls: []
