@@ -1323,11 +1323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24711a8b9de503545b691cb391986453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthManager
-  maxHealth: 10
+  baseHealth: 5
   currentHealth: 0
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
   immunePeriod: 0.5
 --- !u!1 &2105166920249793134
 GameObject:
