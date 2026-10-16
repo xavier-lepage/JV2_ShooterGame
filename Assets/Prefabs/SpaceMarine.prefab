@@ -1148,8 +1148,8 @@ GameObject:
   - component: {fileID: 5502690286714237559}
   - component: {fileID: 5214240275185879247}
   - component: {fileID: -6145939938027288216}
-  - component: {fileID: 6161725114695953078}
   - component: {fileID: -8402558043240115829}
+  - component: {fileID: -2148118671291732210}
   m_Layer: 0
   m_Name: SpaceMarine
   m_TagString: Untagged
@@ -1234,24 +1234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovePlayer
   moveSpeed: 20
---- !u!114 &6161725114695953078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893033509269663184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1fb025560f1c8443a0c79f13bebd448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthManager
-  maxHealth: 10
-  currentHealth: 0
-  immunePeriod: 0.5
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &-8402558043240115829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,6 +1311,24 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   bulletFireRate: 0.1
+--- !u!114 &-2148118671291732210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893033509269663184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24711a8b9de503545b691cb391986453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthManager
+  maxHealth: 10
+  currentHealth: 0
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  immunePeriod: 0.5
 --- !u!1 &2105166920249793134
 GameObject:
   m_ObjectHideFlags: 0
