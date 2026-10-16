@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5dc933600eb0143b42a8fe11c13a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlienMovement
-  goal: {fileID: 0}
+  goal: {fileID: 1893033509269663184, guid: 8e561f877ce285942ba3b5c35c5ef100, type: 3}
 --- !u!114 &2353330126908107093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlienCollision
   coneAngle: 30
+  damage: 1
 --- !u!114 &2976329441643441422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e35c48337fc60439ac419542b7a4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthManager
-  maxHealth: 1
+  baseHealth: 10
   currentHealth: 0
   onDeath:
     m_PersistentCalls:
