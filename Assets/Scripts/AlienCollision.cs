@@ -3,15 +3,15 @@ using UnityEngine;
 public class AlienCollision : MonoBehaviour
 {
     [SerializeField] private float coneAngle = 15f;
+    [SerializeField] private int damage;
 
     void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
 
-
         if (!CheckHeadStomp(collision.GetContact(0).point))
         {
-            collision.gameObject.GetComponent<HealthManager>().TakeDamage(1);
+            collision.gameObject.GetComponent<HealthManager>().Hurt(damage);
         }
         gameObject.SetActive(false);
     }

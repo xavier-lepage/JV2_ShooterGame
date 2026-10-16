@@ -47,7 +47,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "ShootMissiles",
+                    "name": "ShootMissile",
                     "type": "Button",
                     "id": "f6e74523-eb80-40ea-8453-4ba7e50f7d4f",
                     "expectedControlType": "",
@@ -262,7 +262,7 @@
                     "interactions": "",
                     "processors": "AxisDeadzone(max=1)",
                     "groups": "",
-                    "action": "ShootMissiles",
+                    "action": "ShootMissile",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -273,7 +273,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ShootMissiles",
+                    "action": "ShootMissile",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
