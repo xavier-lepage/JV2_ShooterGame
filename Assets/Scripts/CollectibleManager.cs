@@ -20,7 +20,7 @@ public class CollectibleManager : MonoBehaviour
         }
     }
 
-    public void OnAlienDeath(GameObject alien)
+    public void OnAlienDeath(Vector3 position)
     {
         if (Random.Range(0f, 1f) > (1f / dropRarity)) return;
 
@@ -30,7 +30,7 @@ public class CollectibleManager : MonoBehaviour
             GameObject collectible = pickups[row, i];
             if (collectible.activeSelf) continue;
 
-            collectible.GetComponent<CollectibleLifetime>().Spawn(alien.transform.position);
+            collectible.GetComponent<CollectibleLifetime>().Spawn(position);
             break;
         }
     }

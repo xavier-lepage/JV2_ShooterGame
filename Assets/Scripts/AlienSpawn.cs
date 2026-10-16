@@ -3,21 +3,17 @@ using UnityEngine.AI;
 
 public class AlienSpawn : MonoBehaviour
 {
-    private Rigidbody rigidbody;
     private NavMeshAgent agent;
     private bool hasLanded = false;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
         agent = gameObject.GetComponent<NavMeshAgent>();
         agent.enabled = false;
     }
 
     void OnDisable()
     {
-        rigidbody.linearVelocity = Vector3.zero;
-        agent.enabled = false;
         hasLanded = false;
     }
 

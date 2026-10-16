@@ -5,6 +5,7 @@ public class MovePlayer : MonoBehaviour
 {
     private InputAction moveAction;
     private InputAction jumpAction;
+    private CharacterController characterController;
 
     private Vector2 moveValue;
 
@@ -12,13 +13,14 @@ public class MovePlayer : MonoBehaviour
     {
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        characterController = GetComponent<CharacterController>();
     }
 
     void Update()
     {
         moveValue = moveAction.ReadValue<Vector2>();
 
-        Debug.Log(moveValue);
-        Debug.Log(jumpAction.WasPerformedThisFrame());
+
+        characterController.Move(new Vector3(0f, -30f, 0f) * Time.deltaTime);
     }
 }

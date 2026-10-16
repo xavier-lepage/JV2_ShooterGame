@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2934332124419827441}
   - component: {fileID: 4936112591091228102}
   - component: {fileID: 6141135102014766510}
-  - component: {fileID: 9112493413091050596}
+  - component: {fileID: 7357852010008810437}
   m_Layer: 7
   m_Name: Spawner
   m_TagString: Untagged
@@ -113,7 +113,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9112493413091050596
+--- !u!114 &7357852010008810437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,11 +122,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8426467836795767329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2e35c48337fc60439ac419542b7a4d8, type: 3}
+  m_Script: {fileID: 11500000, guid: a1fb025560f1c8443a0c79f13bebd448, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthManager
+  m_EditorClassIdentifier: Assembly-CSharp::HealthManager
   maxHealth: 10
   currentHealth: 0
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []

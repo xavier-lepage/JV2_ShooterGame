@@ -930,8 +930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b61b46dcc628e40be850c79836ddb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleLifetime
-  lifeTime: 5
-  timer: 10
+  lifeTime: 15
+  timer: 0
 --- !u!1 &7262976537300094628
 GameObject:
   m_ObjectHideFlags: 0
