@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5dc933600eb0143b42a8fe11c13a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlienMovement
-  goal: {fileID: 1893033509269663184, guid: 8e561f877ce285942ba3b5c35c5ef100, type: 3}
+  goal: {fileID: 0}
 --- !u!114 &2353330126908107093
 MonoBehaviour:
   m_ObjectHideFlags: 0
