@@ -3,6 +3,7 @@ using UnityEngine;
 public class AlienCollision : MonoBehaviour
 {
     [SerializeField] private float coneAngle = 15f;
+    [SerializeField] private int damage;
     private HealthManager healthManager;
 
     void Start()
@@ -14,11 +15,10 @@ public class AlienCollision : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player")) return;
 
-
         if (!CheckHeadStomp(collision.GetContact(0).point))
         {
             HealthManager player;
-            if (collision.gameObject.TryGetComponent<HealthManager>(out player)) player.TakeDamage(1);
+            if (collision.gameObject.TryGetComponent<HealthManager>(out player)) player.Hurt(damage);
         }
         healthManager.Die();
     }
