@@ -2,31 +2,14 @@ using UnityEngine;
 
 public class AlienCollision : MonoBehaviour
 {
-    [SerializeField] private float coneAngle = 15f;
-    [SerializeField] private int damage;
-    private HealthManager healthManager;
-
-    void Start()
-    {
-        healthManager = gameObject.GetComponent<HealthManager>();    
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (!collision.gameObject.CompareTag("Player")) return;
-
-        if (!CheckHeadStomp(collision.GetContact(0).point))
-        {
-            HealthManager player;
-            if (collision.gameObject.TryGetComponent<HealthManager>(out player)) player.Hurt(damage);
-        }
-        healthManager.Die();
-    }
+    [SerializeField] private float coneAngle = 30f;
 
     public bool CheckHeadStomp(Vector3 contactPoint)
     {
         Vector3 direction = contactPoint - transform.position;
+        float angle = Vector3.Angle(Vector3.up, direction);
+        Debug.Log("Angle " + angle);
 
-        return Vector3.Angle(transform.up, direction) <= coneAngle;
+        return Vector3.Angle(Vector3.up, direction) <= coneAngle;
     }
 }

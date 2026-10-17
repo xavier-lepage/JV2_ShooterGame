@@ -74,7 +74,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6173819684232511389}
-  - component: {fileID: 6907449664997224495}
   m_Layer: 0
   m_Name: BobbleMarine-Body
   m_TagString: Untagged
@@ -99,28 +98,6 @@ Transform:
   - {fileID: 5657655148872585706}
   m_Father: {fileID: 8480429154257158358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6907449664997224495
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209311222363831901}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 9075b8c6238b8074ab40c1e7bb86fd4a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &480838506230839453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,11 +1122,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8480429154257158358}
-  - component: {fileID: 5502690286714237559}
   - component: {fileID: 5214240275185879247}
   - component: {fileID: -6145939938027288216}
   - component: {fileID: -8402558043240115829}
   - component: {fileID: -2148118671291732210}
+  - component: {fileID: 2026917440115955347}
   m_Layer: 0
   m_Name: SpaceMarine
   m_TagString: Untagged
@@ -1174,28 +1151,6 @@ Transform:
   - {fileID: 6173819684232511389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &5502690286714237559
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893033509269663184}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!143 &5214240275185879247
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1326,6 +1281,19 @@ MonoBehaviour:
   baseHealth: 5
   currentHealth: 0
   immunePeriod: 0.5
+  state: {fileID: 0}
+--- !u!114 &2026917440115955347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893033509269663184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c156432d700e4da44be180ed45d60613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollision
 --- !u!1 &2105166920249793134
 GameObject:
   m_ObjectHideFlags: 0

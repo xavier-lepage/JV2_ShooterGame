@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Target"))
+        if (collision.gameObject.CompareTag("Alien") || collision.gameObject.CompareTag("Spawner"))
         {
             HealthManager target = collision.gameObject.GetComponent<HealthManager>();
             if (target != null) target.Hurt(damage);
