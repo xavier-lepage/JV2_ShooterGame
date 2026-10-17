@@ -3,7 +3,7 @@ using UnityEngine;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private int baseHealth = 10;
-    [SerializeField] private int currentHealth;
+    [SerializeField] protected int currentHealth;
 
     private void OnEnable()
     {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class BlasterManager : MonoBehaviour
@@ -7,6 +8,8 @@ public class BlasterManager : MonoBehaviour
     [SerializeField] private Bullet bulletPrefab;
     [SerializeField] private Bullet[] bullets;
     [SerializeField] private float bulletFireRate;
+    [SerializeField] private UnityEvent<string> missileEvent;
+    [SerializeField] private UnityEvent<string> multishotEvent;
     private Vector3 relativeBlasterPosition = new Vector3(1.4f, 2.6f, 4f);
     private float bulletFireTimer;
 

@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerHealthManager : HealthManager
 {
     [SerializeField] private float immunePeriod;
+    [SerializeField] private UnityEvent<string> healthEvent;
 
     private float immunityTimer;
 
@@ -11,6 +13,7 @@ public class PlayerHealthManager : HealthManager
         if (immunityTimer > 0.0f) return;
 
         base.Hurt(damage);
+        healthEvent.Invoke(currentHealth.ToString());
         immunityTimer = immunePeriod;
     }
 
