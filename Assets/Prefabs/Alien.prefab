@@ -194,7 +194,6 @@ GameObject:
   - component: {fileID: 3336702479092096586}
   - component: {fileID: 5175734307100066125}
   - component: {fileID: 2976329441643441422}
-  - component: {fileID: 1169231700977201377}
   - component: {fileID: 2668853591525100238}
   - component: {fileID: 1768568119861085048}
   - component: {fileID: 3555683136830103240}
@@ -265,18 +264,6 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1169231700977201377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616056485553046870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f37960a669308d1468937bce9525d578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlienAnimation
 --- !u!114 &2668853591525100238
 MonoBehaviour:
   m_ObjectHideFlags: 0
