@@ -1265,7 +1265,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  missileCount: 10
+  missilePrefab: {fileID: 7290405218633650275, guid: a786bd07750c5384f844eaf9aa93f6b5,
+    type: 3}
+  missiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   bulletFireRate: 0.1
+  missileFireRate: 1
 --- !u!114 &-2148118671291732210
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,9 +13,10 @@ public class Projectile : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public virtual void Shoot(Vector3 position, Vector3 direction)
+    public virtual void Shoot(Vector3 position, Vector3 direction, Quaternion rotation)
     {
         transform.position = position;
+        transform.rotation = rotation;
 
         gameObject.SetActive(true);
 
