@@ -19,10 +19,13 @@ public class AlienMovement : MonoBehaviour
         direction.y = 0f;
         float yRotation = Quaternion.LookRotation(direction).eulerAngles.y;
         transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     void OnDisable()
     {
+        if (rigidbody == null) return;
+
         rigidbody.linearVelocity = Vector3.zero;
         rigidbody.angularVelocity = Vector3.zero;
     }
