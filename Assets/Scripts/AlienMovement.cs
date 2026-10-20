@@ -5,10 +5,12 @@ public class AlienMovement : MonoBehaviour
 {
     [SerializeField] private GameObject goal;
     private NavMeshAgent navMeshAgent;
+    private Rigidbody rigidbody;
 
     void Start()
     {
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+        rigidbody = gameObject.GetComponent<Rigidbody>();
     }
 
     void OnEnable()
@@ -17,6 +19,13 @@ public class AlienMovement : MonoBehaviour
         direction.y = 0f;
         float yRotation = Quaternion.LookRotation(direction).eulerAngles.y;
         transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+    }
+
+    void OnDisable()
+    {
+        navMeshAgent.velocity = Vector3.zero;    
+        rigidbody.linearVelocity = Vector3.zero;    
+        rigidbody.angularVelocity = Vector3.zero;    
     }
 
     void Update()

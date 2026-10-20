@@ -2,14 +2,27 @@ using UnityEngine;
 
 public class AlienCollision : MonoBehaviour
 {
-    [SerializeField] private float coneAngle = 30f;
+    private bool playerOverHead;
 
-    public bool CheckHeadStomp(Vector3 contactPoint)
+    void OnEnable()
     {
-        Vector3 direction = contactPoint - transform.position;
-        float angle = Vector3.Angle(Vector3.up, direction);
-        Debug.Log("Angle " + angle);
+        playerOverHead = false;    
+    }
 
-        return Vector3.Angle(Vector3.up, direction) <= coneAngle;
+    void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Player")) return;
+        playerOverHead = true;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Player")) return;
+        playerOverHead = false;
+    }
+
+    public bool CheckHeadStomp()
+    {
+        return playerOverHead;
     }
 }

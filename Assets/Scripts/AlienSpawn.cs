@@ -9,7 +9,6 @@ public class AlienSpawn : MonoBehaviour
     void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
-        agent.enabled = false;
     }
 
     void OnDisable()
@@ -19,7 +18,7 @@ public class AlienSpawn : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Floor") || hasLanded) return;
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Floor") || hasLanded) return;
 
         agent.enabled = true;
         hasLanded = true;
@@ -27,6 +26,7 @@ public class AlienSpawn : MonoBehaviour
 
     public void Spawn(Vector3 position)
     {
+        agent.enabled = false;
         transform.position = position;
         gameObject.SetActive(true);
     }
