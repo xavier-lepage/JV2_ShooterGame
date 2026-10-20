@@ -23,6 +23,8 @@ public class AlienMovement : MonoBehaviour
 
     void OnDisable()
     {
+        if (rigidbody == null) return;
+
         rigidbody.linearVelocity = Vector3.zero;
         rigidbody.angularVelocity = Vector3.zero;
     }

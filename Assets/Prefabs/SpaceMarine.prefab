@@ -1281,7 +1281,6 @@ MonoBehaviour:
   baseHealth: 5
   currentHealth: 0
   immunePeriod: 0.5
-  state: {fileID: 0}
 --- !u!114 &2026917440115955347
 MonoBehaviour:
   m_ObjectHideFlags: 0

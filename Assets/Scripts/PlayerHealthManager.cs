@@ -6,6 +6,11 @@ public class PlayerHealthManager : HealthManager
 
     private float immunityTimer;
 
+    public void Heal()
+    {
+        currentHealth++;
+    }
+
     public override void Hurt(int damage)
     {
         if (immunityTimer > 0.0f) return;
