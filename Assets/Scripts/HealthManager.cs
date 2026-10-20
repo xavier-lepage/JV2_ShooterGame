@@ -5,11 +5,6 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private int baseHealth;
     [SerializeField] protected int currentHealth;
 
-    private void Start()
-    {
-        currentHealth = baseHealth;
-    }
-
     private void OnEnable()
     {
         currentHealth = baseHealth;
