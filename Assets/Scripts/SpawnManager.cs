@@ -72,4 +72,18 @@ public class SpawnManager : MonoBehaviour
             break;
         }
     }
+
+    private bool areAllAlienDead()
+    {
+        foreach (GameObject alien in aliens)
+        {
+            if (alien.activeSelf) return false;
+        }
+        return true;
+    }
+
+    public bool IsLevelComplete()
+    {
+        return areAllAlienDead() && (activeSpawners.Count == 0 || maxAliensSpawned == currentAliensSpawned);
+    }
 }

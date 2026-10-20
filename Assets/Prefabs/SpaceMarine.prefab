@@ -1266,6 +1266,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   bulletFireRate: 0.1
+  missileEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  multishotEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-2148118671291732210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,7 +1287,9 @@ MonoBehaviour:
   baseHealth: 5
   currentHealth: 0
   immunePeriod: 0.5
-  state: {fileID: 0}
+  healthEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2026917440115955347
 MonoBehaviour:
   m_ObjectHideFlags: 0
