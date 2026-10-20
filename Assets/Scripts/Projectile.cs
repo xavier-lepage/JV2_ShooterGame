@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
 
     protected Rigidbody rb;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         gameObject.SetActive(false);

@@ -5,7 +5,7 @@ public class PlayerCollision : MonoBehaviour
     private int damage = 1;
     private HealthManager healthManager;
 
-    void Start()
+    void Awake()
     {
         healthManager = gameObject.GetComponent<HealthManager>();    
     }

@@ -19,9 +19,8 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
 
-    void Start()
+    void Awake()
     {
-        characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         characterController = GetComponent<CharacterController>();

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private SpawnManager spawnManager;
     private InputAction quitAction;
 
-    void Start()
+    void Awake()
     {
         quitAction = InputSystem.actions.FindAction("Quit");
         spawnManager = GetComponent<SpawnManager>();

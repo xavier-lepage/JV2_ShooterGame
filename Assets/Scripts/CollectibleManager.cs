@@ -7,7 +7,7 @@ public class CollectibleManager : MonoBehaviour
     private int arraySize = 10;
     private GameObject[,] pickups;
 
-    void Start()
+    void Awake()
     {
         pickups = new GameObject[pickupPrefabs.Length, arraySize];
         for (int i = 0; i < pickupPrefabs.Length; i++)

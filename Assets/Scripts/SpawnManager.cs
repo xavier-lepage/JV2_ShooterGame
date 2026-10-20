@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
 
     private List<GameObject> activeSpawners = new List<GameObject>();
 
-    void Start()
+    void Awake()
     {
         spawners = new GameObject[spawnersLocation.Length];
         for (int i = 0; i < spawnersLocation.Length; i++)

@@ -15,7 +15,7 @@ public class BlasterManager : MonoBehaviour
 
     private InputAction shootBulletAction;
 
-    void Start()
+    void Awake()
     {
         shootBulletAction = InputSystem.actions.FindAction("ShootBullet");
 
