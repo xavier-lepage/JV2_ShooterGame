@@ -6,7 +6,6 @@ public class Missile : Projectile
 {
 	private const int EXPLOSION_RADIUS = 10;
 
-	[SerializeField] private UnityEvent onHit;
 	[SerializeField] private GameObject rendering;
 	[SerializeField] private Explosion explosion;
 
@@ -39,7 +38,7 @@ public class Missile : Projectile
 
 		ResetState();
 
-		onHit.Invoke();
+		explosion.Explode();
 		StartCoroutine(DisableAfterExplosion());
 	}
 
