@@ -9,7 +9,7 @@ public class Missile : Projectile
 	[SerializeField] private GameObject rendering;
 	[SerializeField] private Explosion explosion;
 
-	SphereCollider collider;
+	Collider collider;
 
 	protected override void Start()
 	{

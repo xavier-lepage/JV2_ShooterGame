@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-	[SerializeField] private ParticleSystem explosionParticles;
+	private ParticleSystem explosionParticles;
 
 	public void Explode()
 	{
