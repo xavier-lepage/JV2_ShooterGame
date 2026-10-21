@@ -3,118 +3,131 @@ using UnityEngine.InputSystem;
 
 public class BlasterManager : MonoBehaviour
 {
-    [SerializeField] private int bulletCount;
-    [SerializeField] private Bullet bulletPrefab;
-    [SerializeField] private Bullet[] bullets;
-    [SerializeField] private int missileCount;
-    [SerializeField] private Missile missilePrefab;
-    [SerializeField] private Missile[] missiles;
-    [SerializeField] private float bulletFireRate;
-    [SerializeField] private float missileFireRate;
-    private Vector3 relativeBlasterPosition = new Vector3(1.4f, 2.6f, 4f);
-    private float bulletFireTimer;
-    private float missileFireTimer;
-    private ShootAction shootAction;
+	private const uint MISSILE_CRATE_SIZE = 5;
 
-    private InputAction shootBulletAction;
-    private InputAction shootMissileAction;
+	[SerializeField] private int bulletCount;
+	[SerializeField] private Bullet bulletPrefab;
+	[SerializeField] private Bullet[] bullets;
 
-    void Start()
-    {
-        shootBulletAction = InputSystem.actions.FindAction("ShootBullet");
-        shootMissileAction = InputSystem.actions.FindAction("ShootMissile");
+	[SerializeField] private int missileCount;
+	[SerializeField] private Missile missilePrefab;
+	[SerializeField] private Missile[] missiles;
 
-        bullets = new Bullet[bulletCount];
-        for (int i = 0; i < bullets.Length; i++)
-        {
-            bullets[i] = Instantiate(bulletPrefab);
-        }
+	[SerializeField] private float bulletFireRate;
+	[SerializeField] private float missileFireRate;
 
-        missiles = new Missile[missileCount];
-        for (int i = 0; i < missiles.Length; i++)
-        {
-            missiles[i] = Instantiate(missilePrefab);
-        }
-    }
+	private float bulletFireTimer;
+	private float missileFireTimer;
+	private Vector3 relativeBlasterPosition = new Vector3(1.4f, 2.6f, 4f);
 
-    void Update()
-    {
-        ManageShootActions();
-        ManageReleaseShootActions();
-    }
+	private uint missileStock = 0;
 
-    private void ManageShootActions()
-    {
-        if (shootBulletAction.IsPressed() && bulletFireTimer <= 0.0f && shootAction != ShootAction.Missile)
-        {
-            shootAction = ShootAction.Bullet;
-            Bullet bullet = (Bullet) FindAvailableProjectile(bullets);
-            if (bullet != null)
-            {
-                ShootProjectile(bullet);
-                bulletFireTimer = bulletFireRate;
-            }
-        }
+	private ShootAction shootAction;
+	private InputAction shootBulletAction;
+	private InputAction shootMissileAction;
 
-        if (shootMissileAction.IsPressed() && missileFireTimer <= 0.0f && shootAction != ShootAction.Bullet)
-        {
-            shootAction = ShootAction.Missile;
+	public void OnPickupMissiles()
+	{
+		missileStock += MISSILE_CRATE_SIZE;
+	}
 
-            Missile missile = (Missile) FindAvailableProjectile(missiles);
-            if (missile != null)
-            {
-                ShootProjectile(missile);
-                missileFireTimer = missileFireRate;
-            }
-        }
+	void Start()
+	{
+		shootBulletAction = InputSystem.actions.FindAction("ShootBullet");
+		shootMissileAction = InputSystem.actions.FindAction("ShootMissile");
 
-        if (bulletFireTimer > 0.0f) bulletFireTimer -= Time.deltaTime;
-        if (missileFireTimer > 0.0f) missileFireTimer -= Time.deltaTime;
-    }
+		bullets = new Bullet[bulletCount];
+		for (int i = 0; i < bullets.Length; i++)
+		{
+			bullets[i] = Instantiate(bulletPrefab);
+		}
 
-    private void ManageReleaseShootActions()
-    {
-        switch (shootAction)
-        {
-            case ShootAction.Bullet:
-                if (shootBulletAction.WasReleasedThisFrame())
-                {
-                    ResetShootAction();
-                }
-                break;
-            case ShootAction.Missile:
-                if (shootMissileAction.WasReleasedThisFrame())
-                {
-                    missileFireTimer = 0.0f;
-                    ResetShootAction();
-                }
-                break;
-            default:
-                break;
-        }
-    }
+		missiles = new Missile[missileCount];
+		for (int i = 0; i < missiles.Length; i++)
+		{
+			missiles[i] = Instantiate(missilePrefab);
+		}
+	}
 
-    private Projectile FindAvailableProjectile(Projectile[] projectiles)
-    {
-        foreach (Projectile projectile in projectiles)
-        {
-            if (!projectile.gameObject.activeSelf) return projectile;
-        }
+	void Update()
+	{
+		ManageShootActions();
+		ManageReleaseShootActions();
+	}
 
-        return null;
-    }
+	private void ManageShootActions()
+	{
+		if (shootBulletAction.IsPressed() && bulletFireTimer <= 0.0f && shootAction != ShootAction.Missile)
+		{
+			shootAction = ShootAction.Bullet;
+			Bullet bullet = (Bullet) FindAvailableProjectile(bullets);
+			if (bullet != null)
+			{
+				ShootProjectile(bullet);
+				bulletFireTimer = bulletFireRate;
+			}
+		}
 
-    private void ShootProjectile(Projectile projectile)
-    {
-        Transform player = transform.root;
-        /*  Documentation consultée pour convertir la position relative du blaster en position absolue:
-            https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Transform.TransformPoint.html */
-        Vector3 spawnPos = player.TransformPoint(relativeBlasterPosition);
-        projectile.Shoot(spawnPos, player.forward, player.rotation);
-    }
+		if (shootMissileAction.IsPressed() && missileStock > 0 && missileFireTimer <= 0.0f && shootAction != ShootAction.Bullet)
+		{
+			shootAction = ShootAction.Missile;
 
-    private void ResetShootAction()
-    {
-        shootAction = ShootAction.Idle;
-    }
+			Missile missile = (Missile) FindAvailableProjectile(missiles);
+			if (missile != null)
+			{
+				ShootProjectile(missile);
+				missileFireTimer = missileFireRate;
+				missileStock--;
+			}
+		}
+
+		if (bulletFireTimer > 0.0f) bulletFireTimer -= Time.deltaTime;
+		if (missileFireTimer > 0.0f) missileFireTimer -= Time.deltaTime;
+	}
+
+	private void ManageReleaseShootActions()
+	{
+		switch (shootAction)
+		{
+			case ShootAction.Bullet:
+				if (shootBulletAction.WasReleasedThisFrame())
+				{
+					ResetShootAction();
+				}
+				break;
+			case ShootAction.Missile:
+				if (shootMissileAction.WasReleasedThisFrame())
+				{
+					missileFireTimer = 0.0f;
+					ResetShootAction();
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	private Projectile FindAvailableProjectile(Projectile[] projectiles)
+	{
+		foreach (Projectile projectile in projectiles)
+		{
+			if (!projectile.gameObject.activeSelf) return projectile;
+		}
+
+		return null;
+	}
+
+	private void ShootProjectile(Projectile projectile)
+	{
+		Transform player = transform.root;
+		/*  Documentation consultée pour convertir la position relative du blaster en position absolue:
+			https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Transform.TransformPoint.html */
+		Vector3 spawnPos = player.TransformPoint(relativeBlasterPosition);
+		projectile.Shoot(spawnPos, player.forward, player.rotation);
+	}
+
+	private void ResetShootAction()
+	{
+		shootAction = ShootAction.Idle;
+	}
 }
