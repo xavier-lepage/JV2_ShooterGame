@@ -20,7 +20,7 @@ public class CollectibleLifetime : MonoBehaviour
 
     public void Spawn(Vector3 position)
     {
-        gameObject.transform.position = position;
+        gameObject.transform.position = position + (Vector3.up * 5);
         gameObject.SetActive(true);
         timer = lifeTime;
     }

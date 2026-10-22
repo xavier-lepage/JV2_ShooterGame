@@ -35,7 +35,6 @@ public class AlienSpawn : MonoBehaviour
 
     public void Spawn(Vector3 position)
     {
-        agent.enabled = false;
         transform.position = position;
         gameObject.SetActive(true);
     }

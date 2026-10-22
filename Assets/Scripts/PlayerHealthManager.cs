@@ -5,9 +5,19 @@ public class PlayerHealthManager : HealthManager
 {
     [SerializeField] private float immunePeriod;
     [SerializeField] private UnityEvent<string> healthEvent;
-    [SerializeField] private UnityEvent onDeathEvent;
+    private MovePlayer movePlayer;
 
     private float immunityTimer;
+
+    void Awake()
+    {
+        movePlayer = gameObject.GetComponent<MovePlayer>();    
+    }
+
+    void Start()
+    {
+        healthEvent.Invoke(currentHealth.ToString());    
+    }
 
     public override void Hurt(int damage)
     {
@@ -31,6 +41,11 @@ public class PlayerHealthManager : HealthManager
     public override void Die()
     {
         base.Die();
-        onDeathEvent.Invoke();
+        if (movePlayer != null) movePlayer.disableControl();
+    }
+
+    public bool isAlive()
+    {
+        return currentHealth > 0;
     }
 }

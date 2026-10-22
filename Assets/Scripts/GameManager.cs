@@ -5,7 +5,10 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private UnityEvent onLevelComplete;
+    private const string GAME_OVER_MESSAGE = "Vous êtes mort!\nPartie terminé!";
+    private const string VICTORY_MESSAGE = "Victoire!\nPartie terminé!";
+    [SerializeField] private PlayerHealthManager player;
+    [SerializeField] private UnityEvent<string> onLevelComplete;
     private SpawnManager spawnManager;
     private InputAction quitAction;
 
@@ -18,9 +21,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (quitAction.WasPerformedThisFrame()) QuitGame();
-        if (spawnManager.IsLevelComplete())
+
+        if (!player.isAlive())
         {
-            onLevelComplete.Invoke();
+            onLevelComplete.Invoke(GAME_OVER_MESSAGE);
+        }
+        else if (spawnManager.IsLevelComplete())
+        {
+            onLevelComplete.Invoke(VICTORY_MESSAGE);
         }
     }
 
