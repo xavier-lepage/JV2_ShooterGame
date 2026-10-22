@@ -12,9 +12,10 @@ public class AlienSpawn : MonoBehaviour
         agent.enabled = false;
     }
 
-    void OnDisable()
+    void OnEnable()
     {
         hasLanded = false;
+        agent.enabled = false;
     }
 
     void OnCollisionEnter(Collision collision)
