@@ -17,12 +17,12 @@ public class Missile : Projectile
 		collider = GetComponent<SphereCollider>();
 	}
 
-	public override void Shoot(Vector3 position, Vector3 direction, Quaternion rotation)
+	public override void Shoot(Vector3 position, Vector3 direction)
 	{
 		collider.enabled = true;
 		rendering.SetActive(true);
 
-		base.Shoot(position, direction, rotation);
+		base.Shoot(position, direction);
 	}
 
 	protected override void OnCollisionEnter(Collision collision)

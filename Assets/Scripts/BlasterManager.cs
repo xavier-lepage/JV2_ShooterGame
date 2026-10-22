@@ -123,7 +123,7 @@ public class BlasterManager : MonoBehaviour
 		/*  Documentation consultée pour convertir la position relative du blaster en position absolue:
 			https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Transform.TransformPoint.html */
 		Vector3 spawnPos = player.TransformPoint(relativeBlasterPosition);
-		projectile.Shoot(spawnPos, player.forward, player.rotation);
+		projectile.Shoot(spawnPos, player.forward);
 	}
 
 	private void ResetShootAction()
