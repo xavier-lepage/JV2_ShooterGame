@@ -17,8 +17,9 @@ public class MovePlayer : MonoBehaviour
     private float verticalVelocity = 0f;
 
     [SerializeField] private float moveSpeed;
+	[SerializeField] private Transform mainCamera;
 
-    void Start()
+	void Start()
     {
         characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
@@ -42,18 +43,21 @@ public class MovePlayer : MonoBehaviour
 
         if (direction.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+			float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
 
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, rotationSmoothingDuration);
+			float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, rotationSmoothingDuration);
 
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             float tempSpeed = moveSpeed;
             if (!characterController.isGrounded) tempSpeed /= 2;
 
-            direction.x = direction.x * tempSpeed * Time.deltaTime;
-            direction.z = direction.z * tempSpeed * Time.deltaTime;
-        }
+			Vector3 directionRelativeToCamera = (Quaternion.Euler(0f, angle, 0f) * Vector3.forward).normalized;
+			float originalMovementMagnitude = direction.magnitude;
+
+			direction.x = directionRelativeToCamera.x * tempSpeed * originalMovementMagnitude * Time.deltaTime;
+			direction.z = directionRelativeToCamera.z * tempSpeed * originalMovementMagnitude * Time.deltaTime;
+		}
         else
         {
             direction = Vector3.zero;
