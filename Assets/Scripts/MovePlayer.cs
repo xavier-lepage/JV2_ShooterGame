@@ -23,6 +23,7 @@ public class MovePlayer : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        characterController = GetComponent<CharacterController>();
     }
 
     void Update()

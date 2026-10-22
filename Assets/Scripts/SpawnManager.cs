@@ -1,11 +1,12 @@
-using NUnit.Framework;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] spawners;
-    [SerializeField] private GameObject alien;
+    [SerializeField] private GameObject alienPrefab;
+    [SerializeField] private GameObject spawnerPrefab;
+    [SerializeField] private Vector3[] spawnersLocation;
+    private GameObject[] spawners;
     private GameObject[] aliens;
 
     [SerializeField] private int maxActiveAliens = 20;
@@ -15,18 +16,21 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float spawnInterval = 5f;
     [SerializeField] private float spawnTimer = 0f;
 
-    private System.Collections.Generic.List<GameObject> activeSpawners = new System.Collections.Generic.List<GameObject>();
+    private List<GameObject> activeSpawners = new List<GameObject>();
 
     void Start()
     {
-        foreach (GameObject spawner in spawners)
+        spawners = new GameObject[spawnersLocation.Length];
+        for (int i = 0; i < spawnersLocation.Length; i++)
         {
-            activeSpawners.Add(spawner);
+            spawners[i] = Instantiate(spawnerPrefab);
+            spawners[i].transform.position = spawnersLocation[i];
+            activeSpawners.Add(spawners[i]);
         }
         aliens = new GameObject[maxActiveAliens];
         for (int i = 0; i < maxActiveAliens; i++)
         {
-            aliens[i] = Instantiate(alien);
+            aliens[i] = Instantiate(alienPrefab);
             aliens[i].SetActive(false);
         }
     }
@@ -34,6 +38,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         if (activeSpawners.Count == 0 || currentAliensSpawned >= maxAliensSpawned) return;
+        ManageActiveSpawners();
 
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0f)
@@ -43,9 +48,12 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void OnSpawnerDeath(GameObject spawner)
+    private void ManageActiveSpawners()
     {
-        activeSpawners.Remove(spawner);
+        foreach (GameObject spawner in spawners)
+        {
+            if (!spawner.activeSelf) activeSpawners.Remove(spawner);
+        }
     }
 
     private void SpawnAlien()

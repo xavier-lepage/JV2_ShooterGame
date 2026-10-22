@@ -3,11 +3,11 @@ using UnityEngine.Events;
 
 public class EnemyHealthManager : HealthManager
 {
-    [SerializeField] private UnityEvent<GameObject> onDeath;
+    [SerializeField] private UnityEvent<Vector3> onDeath;
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
-        onDeath.Invoke(gameObject);
+        onDeath.Invoke(gameObject.transform.position);
     }
 }

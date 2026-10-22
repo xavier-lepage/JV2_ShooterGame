@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] private int baseHealth = 10;
-    [SerializeField] private int currentHealth;
+    [SerializeField] private int baseHealth;
+    [SerializeField] protected int currentHealth;
 
     private void OnEnable()
     {
@@ -20,7 +19,7 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    protected virtual void Die()
+    public virtual void Die()
     {
         gameObject.SetActive(false);
     }
