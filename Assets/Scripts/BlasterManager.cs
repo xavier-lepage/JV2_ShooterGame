@@ -33,7 +33,7 @@ public class BlasterManager : MonoBehaviour
 
 	public void OnPickupMultishot()
 	{
-		multishotTimer += Mathf.Max(MULTISHOT_DURATION_INCREMENT, multishotTimer + MULTISHOT_DURATION_INCREMENT);
+		multishotTimer = Mathf.Max(MULTISHOT_DURATION_INCREMENT, multishotTimer + MULTISHOT_DURATION_INCREMENT);
 	}
 
 	public void OnPickupMissiles()
