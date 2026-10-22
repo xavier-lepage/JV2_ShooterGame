@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class BlasterManager : MonoBehaviour
 {
 	private const uint MISSILE_CRATE_SIZE = 5;
+	private const float MULTISHOT_DURATION_INCREMENT = 10.0f;
+	private float[] MULTISHOT_ANGLES = { -45.0f, 45.0f };
 
 	[SerializeField] private int bulletCount;
 	[SerializeField] private Bullet bulletPrefab;
@@ -25,6 +28,13 @@ public class BlasterManager : MonoBehaviour
 	private ShootAction shootAction;
 	private InputAction shootBulletAction;
 	private InputAction shootMissileAction;
+
+	private float multishotTimer = 0.0f;
+
+	public void OnPickupMultishot()
+	{
+		multishotTimer += MULTISHOT_DURATION_INCREMENT;
+	}
 
 	public void OnPickupMissiles()
 	{
@@ -63,8 +73,10 @@ public class BlasterManager : MonoBehaviour
 			Bullet bullet = (Bullet) FindAvailableProjectile(bullets);
 			if (bullet != null)
 			{
-				ShootProjectile(bullet);
+				ShootProjectile(bullet, transform.forward);
 				bulletFireTimer = bulletFireRate;
+
+				if (multishotTimer > 0.0f) Multishot();
 			}
 		}
 
@@ -75,7 +87,7 @@ public class BlasterManager : MonoBehaviour
 			Missile missile = (Missile) FindAvailableProjectile(missiles);
 			if (missile != null)
 			{
-				ShootProjectile(missile);
+				ShootProjectile(missile, transform.forward);
 				missileFireTimer = missileFireRate;
 				missileStock--;
 			}
@@ -83,6 +95,7 @@ public class BlasterManager : MonoBehaviour
 
 		if (bulletFireTimer > 0.0f) bulletFireTimer -= Time.deltaTime;
 		if (missileFireTimer > 0.0f) missileFireTimer -= Time.deltaTime;
+		if (multishotTimer > 0.0f) multishotTimer -= Time.deltaTime;
 	}
 
 	private void ManageReleaseShootActions()
@@ -117,13 +130,28 @@ public class BlasterManager : MonoBehaviour
 		return null;
 	}
 
-	private void ShootProjectile(Projectile projectile)
+	private void ShootProjectile(Projectile projectile, Vector3 direction)
 	{
 		Transform player = transform.root;
 		/*  Documentation consultée pour convertir la position relative du blaster en position absolue:
 			https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Transform.TransformPoint.html */
 		Vector3 spawnPos = player.TransformPoint(relativeBlasterPosition);
-		projectile.Shoot(spawnPos, player.forward);
+		projectile.Shoot(spawnPos, direction);
+	}
+
+	private void Multishot()
+	{
+		foreach (float angle in MULTISHOT_ANGLES)
+		{
+			Bullet bullet = (Bullet)FindAvailableProjectile(bullets);
+			if (bullet == null) return;
+
+			/*	Documentation consultée pour appliquer un angle de rotation sur un axe:
+				https://docs.unity3d.com/6000.0/Documentation/Manual/class-Quaternion.html
+				https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Quaternion.AngleAxis.html */
+			Vector3 direction = Quaternion.AngleAxis(angle, transform.up) * transform.forward;
+			ShootProjectile(bullet, direction);
+		}
 	}
 
 	private void ResetShootAction()
