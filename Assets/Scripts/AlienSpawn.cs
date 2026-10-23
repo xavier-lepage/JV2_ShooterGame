@@ -19,12 +19,6 @@ public class AlienSpawn : MonoBehaviour
         rigidbody.isKinematic = false;
     }
 
-    void OnEnable()
-    {
-        hasLanded = false;
-        agent.enabled = false;
-    }
-
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Floor") || hasLanded) return;

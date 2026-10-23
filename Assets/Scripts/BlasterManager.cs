@@ -65,7 +65,7 @@ public class BlasterManager : MonoBehaviour
 
 	void Start()
     {
-        missileEvent.Invoke(missileStock);
+        missileEvent.Invoke(missileStock.ToString());
         multishotEvent.Invoke(Mathf.Max(0, Mathf.Ceil(multishotTimer)).ToString());
     }
 
