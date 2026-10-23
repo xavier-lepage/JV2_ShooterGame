@@ -16,7 +16,12 @@ public class PlayerHealthManager : HealthManager
 
     void Start()
     {
-        healthEvent.Invoke(currentHealth.ToString());    
+        healthEvent.Invoke(currentHealth.ToString());
+	}
+	
+    public void Heal()
+    {
+        currentHealth++;
     }
 
     public override void Hurt(int damage)
