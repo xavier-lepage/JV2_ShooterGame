@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private const string VICTORY_MESSAGE = "Victoire!\nPartie terminé!";
     [SerializeField] private PlayerHealthManager player;
     [SerializeField] private UnityEvent<string> onLevelComplete;
+    [SerializeField] private UnityEvent onVictory;
     private SpawnManager spawnManager;
     private InputAction quitAction;
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         else if (spawnManager.IsLevelComplete())
         {
             onLevelComplete.Invoke(VICTORY_MESSAGE);
+            onVictory.Invoke();
         }
     }
 
