@@ -263,9 +263,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthManager
   baseHealth: 1
   currentHealth: 0
-  rendering: {fileID: 1695290991158068871}
   deathSFXClip: {fileID: 8300000, guid: 8f252cb39a2a2da44aefd3d09599af53, type: 3}
   damageSFXClip: {fileID: 0}
+  visual: {fileID: 1695290991158068871}
   onDeath:
     m_PersistentCalls:
       m_Calls: []

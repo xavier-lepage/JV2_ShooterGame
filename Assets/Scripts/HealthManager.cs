@@ -19,7 +19,7 @@ public class HealthManager : MonoBehaviour
 		collider = GetComponent<Collider>();
 	}
 
-	void OnEnable()
+	protected virtual void OnEnable()
 	{
 		currentHealth = baseHealth;
 		if (collider != null) collider.enabled = true;
@@ -53,7 +53,7 @@ public class HealthManager : MonoBehaviour
 		return currentHealth <= 0;
 	}
 
-	private IEnumerator WaitForDeathSFX()
+	protected virtual IEnumerator WaitForDeathSFX()
 	{
 		if (collider != null) collider.enabled = false;
 		if (visual != null) visual.SetActive(false);

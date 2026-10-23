@@ -17,6 +17,7 @@ public class AlienSpawn : MonoBehaviour
     {
         agent.enabled = false;
         rigidbody.isKinematic = false;
+        hasLanded = false;
     }
 
     void OnCollisionEnter(Collision collision)

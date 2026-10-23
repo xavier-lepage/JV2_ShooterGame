@@ -43,12 +43,14 @@ public class BlasterManager : MonoBehaviour
 	public void OnPickupMultishot()
 	{
 		multishotTimer = Mathf.Max(MULTISHOT_DURATION_INCREMENT, multishotTimer + MULTISHOT_DURATION_INCREMENT);
-	}
+        multishotEvent.Invoke(Mathf.Max(0, Mathf.Ceil(multishotTimer)).ToString());
+    }
 
 	public void OnPickupMissiles()
 	{
 		missileStock += MISSILE_CRATE_SIZE;
-	}
+        missileEvent.Invoke(missileStock.ToString());
+    }
 
 	void Awake()
 	{
@@ -109,12 +111,16 @@ public class BlasterManager : MonoBehaviour
 				blasterSFX.PlayOneShot(missileSFXClip);
 				missileFireTimer = missileFireRate;
 				missileStock--;
-			}
+                missileEvent.Invoke(missileStock.ToString());
+            }
 		}
 
 		if (bulletFireTimer > 0.0f) bulletFireTimer -= Time.deltaTime;
 		if (missileFireTimer > 0.0f) missileFireTimer -= Time.deltaTime;
-		if (multishotTimer > 0.0f) multishotTimer -= Time.deltaTime;
+		if (multishotTimer > 0.0f) { 
+			multishotTimer -= Time.deltaTime;
+            multishotEvent.Invoke(Mathf.Max(0, Mathf.Ceil(multishotTimer)).ToString());
+        }
 	}
 
 	private void ManageReleaseShootActions()
