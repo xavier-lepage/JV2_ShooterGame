@@ -25,7 +25,6 @@ public class SoundManager : MonoBehaviour
 		music.Play();
 	}
 
-
 	private IEnumerator FadeMusicOut(float targetVolume)
 	{
 		/*  Coroutine inspirée de:

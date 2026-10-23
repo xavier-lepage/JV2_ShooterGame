@@ -566,6 +566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleLifetime
   lifeTime: 15
   timer: 0
+  spawnSFXClip: {fileID: 8300000, guid: 00f25f135ee488c4591479876ca3f10c, type: 3}
 --- !u!82 &5244955072762411367
 AudioSource:
   m_ObjectHideFlags: 0

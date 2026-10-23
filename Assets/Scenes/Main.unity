@@ -346,6 +346,41 @@ PrefabInstance:
       propertyPath: 'pickupPrefabs.Array.data[2]'
       value: 
       objectReference: {fileID: 1351940594}
+    - target: {fileID: 6531710322594163701, guid: 52cd07a1be21ff6479354cec0431ba6b,
+        type: 3}
+      propertyPath: onCollectibleSpawn.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531710322594163701, guid: 52cd07a1be21ff6479354cec0431ba6b,
+        type: 3}
+      propertyPath: onCollectibleSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531710322594163701, guid: 52cd07a1be21ff6479354cec0431ba6b,
+        type: 3}
+      propertyPath: onCollectibleSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 282840818}
+    - target: {fileID: 6531710322594163701, guid: 52cd07a1be21ff6479354cec0431ba6b,
+        type: 3}
+      propertyPath: onCollectibleSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531710322594163701, guid: 52cd07a1be21ff6479354cec0431ba6b,
+        type: 3}
+      propertyPath: onCollectibleSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCollectibleSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531710322594163701, guid: 52cd07a1be21ff6479354cec0431ba6b,
+        type: 3}
+      propertyPath: onCollectibleSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531710322594163701, guid: 52cd07a1be21ff6479354cec0431ba6b,
+        type: 3}
+      propertyPath: onCollectibleSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -537,6 +572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   gameMusicClip: {fileID: 8300000, guid: c913da143d1341c4a8ca22e0717e79a2, type: 3}
   victoryMusicClip: {fileID: 8300000, guid: b4d3cb20c25bae54e999c556d56876b8, type: 3}
+  collectibleSpawnSFXClip: {fileID: 8300000, guid: 00f25f135ee488c4591479876ca3f10c,
+    type: 3}
 --- !u!82 &282840819
 AudioSource:
   m_ObjectHideFlags: 0
