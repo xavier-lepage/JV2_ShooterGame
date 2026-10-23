@@ -4,11 +4,13 @@ using UnityEngine.AI;
 public class AlienMovement : MonoBehaviour
 {
     [SerializeField] private GameObject goal;
-    private NavMeshAgent navMeshAgent;
+    private NavMeshAgent agent;
+    private Rigidbody rigidbody;
 
-    void Start()
+    void Awake()
     {
-        navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        rigidbody = gameObject.GetComponent<Rigidbody>();
     }
 
     void OnEnable()
@@ -19,9 +21,24 @@ public class AlienMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
     }
 
+    void OnDisable()
+    {
+        if (agent != null)
+            agent.velocity = Vector3.zero;
+
+        if (rigidbody != null)
+        {
+            if (!rigidbody.isKinematic)
+            {
+                rigidbody.linearVelocity = Vector3.zero;
+                rigidbody.angularVelocity = Vector3.zero;
+            }
+        }
+    }
+
     void Update()
     {
-        if (navMeshAgent != null && navMeshAgent.enabled)
-            navMeshAgent.destination = goal.transform.position;
+        if (agent != null && agent.enabled)
+            agent.destination = goal.transform.position;
     }
 }

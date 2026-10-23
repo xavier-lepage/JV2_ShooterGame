@@ -4,25 +4,29 @@ using UnityEngine.AI;
 public class AlienSpawn : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Rigidbody rigidbody;
     private bool hasLanded = false;
 
-    void Start()
+    void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
-        agent.enabled = false;
+        rigidbody = gameObject.GetComponent<Rigidbody>();
     }
 
-    void OnDisable()
+    private void OnEnable()
     {
+        agent.enabled = false;
+        rigidbody.isKinematic = false;
         hasLanded = false;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Floor") || hasLanded) return;
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Floor") || hasLanded) return;
 
         agent.enabled = true;
         hasLanded = true;
+        rigidbody.isKinematic = true;
     }
 
     public void Spawn(Vector3 position)
