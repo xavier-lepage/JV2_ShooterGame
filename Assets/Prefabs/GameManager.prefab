@@ -74,6 +74,9 @@ MonoBehaviour:
   - {x: 65, y: -60, z: 65}
   - {x: 130, y: -60, z: -55}
   - {x: 130, y: -60, z: 55}
+  onGameWon:
+    m_PersistentCalls:
+      m_Calls: []
   maxActiveAliens: 20
   maxAliensSpawned: 500
   spawnInterval: 5
@@ -95,3 +98,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  onCollectibleSpawn:
+    m_PersistentCalls:
+      m_Calls: []
