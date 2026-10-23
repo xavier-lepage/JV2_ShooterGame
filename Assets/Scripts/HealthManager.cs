@@ -13,19 +13,6 @@ public class HealthManager : MonoBehaviour
 	private Collider collider;
 	[SerializeField] private GameObject visual;
 
-	void Awake()
-	{
-		healthSFX = GetComponent<AudioSource>();
-		collider = GetComponent<Collider>();
-	}
-
-	protected virtual void OnEnable()
-	{
-		currentHealth = baseHealth;
-		if (collider != null) collider.enabled = true;
-		if (visual != null) visual.SetActive(true);
-	}
-
 	public virtual void Hurt(int damage)
 	{
 		if (healthSFX != null && damageSFXClip != null) healthSFX.PlayOneShot(damageSFXClip);
@@ -46,6 +33,19 @@ public class HealthManager : MonoBehaviour
 
 		healthSFX.PlayOneShot(deathSFXClip);
 		StartCoroutine(WaitForDeathSFX());
+	}
+
+	protected virtual void Awake()
+	{
+		healthSFX = GetComponent<AudioSource>();
+		collider = GetComponent<Collider>();
+	}
+
+	protected virtual void OnEnable()
+	{
+		currentHealth = baseHealth;
+		if (collider != null) collider.enabled = true;
+		if (visual != null) visual.SetActive(true);
 	}
 
 	protected bool isDead()

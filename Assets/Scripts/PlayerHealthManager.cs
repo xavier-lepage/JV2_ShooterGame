@@ -11,35 +11,48 @@ public class PlayerHealthManager : HealthManager
 
     private float immunityTimer;
 
-    void Awake()
+	public bool isAlive()
+	{
+		return currentHealth > 0;
+	}
+
+	public void Heal()
+	{
+		currentHealth++;
+		healthEvent.Invoke(currentHealth.ToString());
+	}
+
+	public override void Hurt(int damage)
+	{
+		if (immunityTimer > 0.0f) return;
+
+		base.Hurt(damage);
+		healthEvent.Invoke(currentHealth.ToString());
+		immunityTimer = immunePeriod;
+	}
+
+	public override void Die()
+	{
+		base.Die();
+		if (movePlayer != null) movePlayer.disableControl();
+	}
+
+	protected override IEnumerator WaitForDeathSFX()
+	{
+		head.SetActive(false);
+		return base.WaitForDeathSFX();
+	}
+
+	protected override void Awake()
     {
+        base.Awake();
         movePlayer = gameObject.GetComponent<MovePlayer>();    
     }
-
-    void Start()
-    {
-        healthEvent.Invoke(currentHealth.ToString());
-	}
 
     protected override void OnEnable()
     {
         head.SetActive(true);
         base.OnEnable();
-    }
-	
-    public void Heal()
-    {
-        currentHealth++;
-        healthEvent.Invoke(currentHealth.ToString());
-    }
-
-    public override void Hurt(int damage)
-    {
-        if (immunityTimer > 0.0f) return;
-
-        base.Hurt(damage);
-        healthEvent.Invoke(currentHealth.ToString());
-        immunityTimer = immunePeriod;
     }
 
     private void Update()
@@ -52,20 +65,8 @@ public class PlayerHealthManager : HealthManager
         if (immunityTimer > 0.0f) immunityTimer -= Time.deltaTime;
     }
 
-    public override void Die()
-    {
-        base.Die();
-        if (movePlayer != null) movePlayer.disableControl();
-    }
-
-    protected override IEnumerator WaitForDeathSFX()
-    {
-        head.SetActive(false);
-        return base.WaitForDeathSFX();
-    }
-
-    public bool isAlive()
-    {
-        return currentHealth > 0;
-    }
+	private void Start()
+	{
+		healthEvent.Invoke(currentHealth.ToString());
+	}
 }
