@@ -3122,6 +3122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3934825896641884859}
+  - component: {fileID: 5592672134081670569}
   m_Layer: 0
   m_Name: BobbleMarine-Head
   m_TagString: Untagged
@@ -3146,6 +3147,28 @@ Transform:
   - {fileID: 2201544732418769504}
   m_Father: {fileID: 8480429154257158358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.3333333}
+--- !u!95 &5592672134081670569
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834266308831946055}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: af78ccc295593e7479b080c81b2106e7, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9c7bb7bb4d2e49e48ad3c92e4a8c0ecd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4970831491400722936
 GameObject:
   m_ObjectHideFlags: 0

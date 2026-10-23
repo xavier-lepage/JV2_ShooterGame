@@ -191,6 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616056485553046867}
+  - component: {fileID: 6773231432343496535}
   - component: {fileID: 3336702479092096586}
   - component: {fileID: 5175734307100066125}
   - component: {fileID: 2976329441643441422}
@@ -224,6 +225,18 @@ Transform:
   - {fileID: 629601535310525731}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6773231432343496535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616056485553046870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37960a669308d1468937bce9525d578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlienAnimation
 --- !u!114 &3336702479092096586
 MonoBehaviour:
   m_ObjectHideFlags: 0
