@@ -61,7 +61,6 @@ public class SpawnManager : MonoBehaviour
 			if (!spawner.activeSelf) activeSpawners.Remove(spawner);
 		}
 	}
-
 	private void SpawnAlien()
 	{
 		int index = Random.Range(0, activeSpawners.Count);
