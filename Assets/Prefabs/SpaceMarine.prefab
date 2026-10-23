@@ -1203,6 +1203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fac7a16ceeb24b40896e5f7b442bf7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlasterManager
+  bulletSFXClip: {fileID: 8300000, guid: 5601eca1dfa29004bb6fa92fb60c7feb, type: 3}
+  missileSFXClip: {fileID: 8300000, guid: a188fcd57b842ae42b8591b1a666c90f, type: 3}
+  multishotSFXClip: {fileID: 8300000, guid: 8e48e9181723f0c4c9c881d2bfc0fa03, type: 3}
   bulletCount: 180
   bulletPrefab: {fileID: 6391021579682688996, guid: 76a2025aad54fe147b7c621f3f4fef50,
     type: 3}
@@ -1417,7 +1420,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthManager
   baseHealth: 5
   currentHealth: 0
-  rendering: {fileID: 0}
   deathSFXClip: {fileID: 8300000, guid: d9f613ad6fc2e5648b734dade33baf01, type: 3}
   damageSFXClip: {fileID: 8300000, guid: a16b9017a7a3b744fbd8ab26d0a816c3, type: 3}
   immunePeriod: 0.5

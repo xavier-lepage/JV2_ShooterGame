@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class BlasterManager : MonoBehaviour
 {
 	private const uint MISSILE_CRATE_SIZE = 5;
 	private const float MULTISHOT_DURATION_INCREMENT = 10.0f;
 	private float[] MULTISHOT_ANGLES = { -45.0f, 45.0f };
+
+	[SerializeField] private AudioClip bulletSFXClip;
+	[SerializeField] private AudioClip missileSFXClip;
+	[SerializeField] private AudioClip multishotSFXClip;
 
 	[SerializeField] private int bulletCount;
 	[SerializeField] private Bullet bulletPrefab;
@@ -18,6 +21,8 @@ public class BlasterManager : MonoBehaviour
 
 	[SerializeField] private float bulletFireRate;
 	[SerializeField] private float missileFireRate;
+
+	private AudioSource blasterSFX;
 
 	private float bulletFireTimer;
 	private float missileFireTimer;
@@ -45,6 +50,8 @@ public class BlasterManager : MonoBehaviour
 	{
 		shootBulletAction = InputSystem.actions.FindAction("ShootBullet");
 		shootMissileAction = InputSystem.actions.FindAction("ShootMissile");
+
+		blasterSFX = GetComponent<AudioSource>();
 
 		bullets = new Bullet[bulletCount];
 		for (int i = 0; i < bullets.Length; i++)
@@ -77,6 +84,7 @@ public class BlasterManager : MonoBehaviour
 				bulletFireTimer = bulletFireRate;
 
 				if (multishotTimer > 0.0f) Multishot();
+				else blasterSFX.PlayOneShot(bulletSFXClip);
 			}
 		}
 
@@ -88,6 +96,7 @@ public class BlasterManager : MonoBehaviour
 			if (missile != null)
 			{
 				ShootProjectile(missile, transform.forward);
+				blasterSFX.PlayOneShot(missileSFXClip);
 				missileFireTimer = missileFireRate;
 				missileStock--;
 			}
@@ -152,6 +161,8 @@ public class BlasterManager : MonoBehaviour
 			Vector3 direction = Quaternion.AngleAxis(angle, transform.up) * transform.forward;
 			ShootProjectile(bullet, direction);
 		}
+
+		blasterSFX.PlayOneShot(multishotSFXClip);
 	}
 
 	private void ResetShootAction()
