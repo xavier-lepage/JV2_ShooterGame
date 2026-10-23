@@ -2832,6 +2832,11 @@ PrefabInstance:
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4652683636541265190, guid: ebdb77b9bebedbe6eb0742bed57d3ddc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5175734307100066125, guid: ebdb77b9bebedbe6eb0742bed57d3ddc,
         type: 3}
       propertyPath: goal
