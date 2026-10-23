@@ -10,21 +10,27 @@ public class CollectibleLifetime : MonoBehaviour
 	private Collider collider;
 	private Renderer[] renderers;
 
-	public void Spawn(Vector3 position)
-	{
+	void Awake() {
 		collider = GetComponent<Collider>();
 		renderers = GetComponentsInChildren<Renderer>();
 		spawnSFX = GetComponent<AudioSource>();
-		gameObject.transform.position = position;
-		gameObject.SetActive(true);
-		spawnSFX.PlayOneShot(spawnSFXClip);
-		timer = lifeTime;
+	}
 
+	void OnEnable()
+	{
+		spawnSFX.PlayOneShot(spawnSFXClip);
 		if (collider != null) collider.enabled = true;
 		foreach (Renderer renderer in renderers)
 		{
 			renderer.enabled = true;
 		}
+	}
+
+	public void Spawn(Vector3 position)
+	{
+		gameObject.transform.position = position;
+		gameObject.SetActive(true);
+		timer = lifeTime;
 	}
 
 	private void Update()

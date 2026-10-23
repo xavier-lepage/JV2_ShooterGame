@@ -7,11 +7,11 @@ public class Projectile : MonoBehaviour
 
 	protected Rigidbody rb;
 
-	protected virtual void Start()
-	{
-		rb = GetComponent<Rigidbody>();
-		gameObject.SetActive(false);
-	}
+    protected virtual void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        gameObject.SetActive(false);
+    }
 
 	public virtual void Shoot(Vector3 position, Vector3 direction)
 	{

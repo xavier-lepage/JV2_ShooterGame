@@ -5,20 +5,22 @@ public class PlayerCollision : MonoBehaviour
     private int damage = 1;
     private HealthManager healthManager;
 
-    void Start()
+    void Awake()
     {
         healthManager = gameObject.GetComponent<HealthManager>();    
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    void OnTriggerEnter(Collider other)
     {
-        if (!hit.gameObject.CompareTag("Alien")) return;
+        if (other.isTrigger || !other.gameObject.CompareTag("Alien")) return;
 
-        if (!hit.gameObject.GetComponent<AlienCollision>().CheckHeadStomp(hit.point))
+        AlienCollision alienCollision = other.GetComponent<AlienCollision>();
+        EnemyHealthManager alienHealthManager = other.gameObject.GetComponent<EnemyHealthManager>();
+
+        if (!alienCollision.CheckHeadStomp())
         {
             healthManager.Hurt(damage);
         }
-
-        if (hit.gameObject.TryGetComponent<HealthManager>(out HealthManager alien)) alien.Die();
+        alienHealthManager.Die();
     }
 }

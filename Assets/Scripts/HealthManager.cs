@@ -11,23 +11,19 @@ public class HealthManager : MonoBehaviour
 	private AudioSource healthSFX;
 
 	private Collider collider;
-	private Renderer[] renderers;
+	[SerializeField] private GameObject visual;
 
-	private void Start()
+	void Awake()
 	{
 		healthSFX = GetComponent<AudioSource>();
 		collider = GetComponent<Collider>();
-		renderers = GetComponentsInChildren<Renderer>();
 	}
 
-	private void OnEnable()
+	protected virtual void OnEnable()
 	{
 		currentHealth = baseHealth;
 		if (collider != null) collider.enabled = true;
-		foreach (Renderer renderer in renderers)
-		{
-			renderer.enabled = true;
-		}
+		if (visual != null) visual.SetActive(true);
 	}
 
 	public virtual void Hurt(int damage)
@@ -57,13 +53,10 @@ public class HealthManager : MonoBehaviour
 		return currentHealth <= 0;
 	}
 
-	private IEnumerator WaitForDeathSFX()
+	protected virtual IEnumerator WaitForDeathSFX()
 	{
 		if (collider != null) collider.enabled = false;
-		foreach (Renderer renderer in renderers)
-		{
-			renderer.enabled = false;
-		}
+		if (visual != null) visual.SetActive(false);
 
 		yield return new WaitForSeconds(deathSFXClip.length);
 

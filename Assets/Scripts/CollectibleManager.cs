@@ -24,7 +24,7 @@ public class CollectibleManager : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	void Awake()
     {
         pickups = new GameObject[pickupPrefabs.Length, arraySize];
         for (int i = 0; i < pickupPrefabs.Length; i++)

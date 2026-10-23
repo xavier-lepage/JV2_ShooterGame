@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class BlasterManager : MonoBehaviour
@@ -18,6 +19,9 @@ public class BlasterManager : MonoBehaviour
 	[SerializeField] private int missileCount;
 	[SerializeField] private Missile missilePrefab;
 	[SerializeField] private Missile[] missiles;
+
+	[SerializeField] private UnityEvent<string> missileEvent;
+    [SerializeField] private UnityEvent<string> multishotEvent;
 
 	[SerializeField] private float bulletFireRate;
 	[SerializeField] private float missileFireRate;
@@ -39,14 +43,16 @@ public class BlasterManager : MonoBehaviour
 	public void OnPickupMultishot()
 	{
 		multishotTimer = Mathf.Max(MULTISHOT_DURATION_INCREMENT, multishotTimer + MULTISHOT_DURATION_INCREMENT);
-	}
+        multishotEvent.Invoke(Mathf.Max(0, Mathf.Ceil(multishotTimer)).ToString());
+    }
 
 	public void OnPickupMissiles()
 	{
 		missileStock += MISSILE_CRATE_SIZE;
-	}
+        missileEvent.Invoke(missileStock.ToString());
+    }
 
-	void Start()
+	void Awake()
 	{
 		shootBulletAction = InputSystem.actions.FindAction("ShootBullet");
 		shootMissileAction = InputSystem.actions.FindAction("ShootMissile");
@@ -65,6 +71,12 @@ public class BlasterManager : MonoBehaviour
 			missiles[i] = Instantiate(missilePrefab);
 		}
 	}
+
+	void Start()
+    {
+        missileEvent.Invoke(missileStock.ToString());
+        multishotEvent.Invoke(Mathf.Max(0, Mathf.Ceil(multishotTimer)).ToString());
+    }
 
 	void Update()
 	{
@@ -99,12 +111,16 @@ public class BlasterManager : MonoBehaviour
 				blasterSFX.PlayOneShot(missileSFXClip);
 				missileFireTimer = missileFireRate;
 				missileStock--;
-			}
+                missileEvent.Invoke(missileStock.ToString());
+            }
 		}
 
 		if (bulletFireTimer > 0.0f) bulletFireTimer -= Time.deltaTime;
 		if (missileFireTimer > 0.0f) missileFireTimer -= Time.deltaTime;
-		if (multishotTimer > 0.0f) multishotTimer -= Time.deltaTime;
+		if (multishotTimer > 0.0f) { 
+			multishotTimer -= Time.deltaTime;
+            multishotEvent.Invoke(Mathf.Max(0, Mathf.Ceil(multishotTimer)).ToString());
+        }
 	}
 
 	private void ManageReleaseShootActions()
@@ -142,7 +158,7 @@ public class BlasterManager : MonoBehaviour
 	private void ShootProjectile(Projectile projectile, Vector3 direction)
 	{
 		Transform player = transform.root;
-		/*  Documentation consultée pour convertir la position relative du blaster en position absolue:
+		/*  Documentation consultï¿½e pour convertir la position relative du blaster en position absolue:
 			https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Transform.TransformPoint.html */
 		Vector3 spawnPos = player.TransformPoint(relativeBlasterPosition);
 		projectile.Shoot(spawnPos, direction);
@@ -155,7 +171,7 @@ public class BlasterManager : MonoBehaviour
 			Bullet bullet = (Bullet)FindAvailableProjectile(bullets);
 			if (bullet == null) return;
 
-			/*	Documentation consultée pour appliquer un angle de rotation sur un axe:
+			/*	Documentation consultï¿½e pour appliquer un angle de rotation sur un axe:
 				https://docs.unity3d.com/6000.0/Documentation/Manual/class-Quaternion.html
 				https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Quaternion.AngleAxis.html */
 			Vector3 direction = Quaternion.AngleAxis(angle, transform.up) * transform.forward;

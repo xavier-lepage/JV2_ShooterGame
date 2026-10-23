@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SpawnManager : MonoBehaviour
 {
 	[SerializeField] private GameObject alienPrefab;
 	[SerializeField] private GameObject spawnerPrefab;
 	[SerializeField] private Vector3[] spawnersLocation;
-	[SerializeField] private UnityEvent onGameWon;
 	private GameObject[] spawners;
 	private GameObject[] aliens;
 
@@ -26,7 +24,7 @@ public class SpawnManager : MonoBehaviour
 		activeAliens = Mathf.Max(activeAliens - 1, 0);
 	}
 
-	void Start()
+	void Awake()
 	{
 		spawners = new GameObject[spawnersLocation.Length];
 		for (int i = 0; i < spawnersLocation.Length; i++)
@@ -45,11 +43,6 @@ public class SpawnManager : MonoBehaviour
 
 	void Update()
 	{
-		if (activeAliens == 0 && activeSpawners.Count == 0)
-		{
-			onGameWon.Invoke();
-		}
-
 		if (activeSpawners.Count == 0 || currentAliensSpawned >= maxAliensSpawned) return;
 		ManageActiveSpawners();
 
@@ -86,4 +79,9 @@ public class SpawnManager : MonoBehaviour
 			break;
 		}
 	}
+
+	public bool IsLevelComplete()
+    {
+        return activeAliens == 0 && (activeSpawners.Count == 0 || maxAliensSpawned == currentAliensSpawned);
+    }
 }

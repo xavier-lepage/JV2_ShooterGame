@@ -127,3 +127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
   baseHealth: 10
   currentHealth: 0
+  deathSFXClip: {fileID: 0}
+  damageSFXClip: {fileID: 0}
+  visual: {fileID: 8426467836795767329}

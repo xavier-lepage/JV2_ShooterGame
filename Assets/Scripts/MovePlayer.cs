@@ -7,6 +7,7 @@ public class MovePlayer : MonoBehaviour
     private InputAction moveAction;
     private InputAction jumpAction;
     private Vector2 moveValue;
+    private bool isGameOver = false;
 
     private Vector3 direction;
     private float rotationSmoothingDuration = 0.1f;
@@ -19,9 +20,8 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private float moveSpeed;
 	[SerializeField] private Transform mainCamera;
 
-	void Start()
+    void Awake()
     {
-        characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         characterController = GetComponent<CharacterController>();
@@ -29,6 +29,7 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
+        if (isGameOver) return;
         moveValue = moveAction.ReadValue<Vector2>();
 
         MoveHorizontally();
@@ -73,5 +74,10 @@ public class MovePlayer : MonoBehaviour
 
         verticalVelocity -= gravity * Time.deltaTime;
         direction.y = verticalVelocity * Time.deltaTime;
+    }
+
+    public void disableControl()
+    {
+        isGameOver = true;
     }
 }
